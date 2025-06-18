@@ -557,7 +557,7 @@ finally:
 - 아래는 유의미한 상관관계를 토대로 한 분석 및 가설도출입니다.
 <br>
 
-- 가격에 대한 분석 및 가설
+**가격에 대한 분석 및 가설**
  + 가격과 고객의 만족도(평점, 향/지속력 만족도)는 비례관계다.
   1. 가설1<br>
    고품질의 재료사용으로 인해 가격이 증가하고 고객만족도가 상승하였다.
@@ -585,6 +585,7 @@ finally:
 [miniproj_first.ipynb](miniproj_first.ipynb)<br>
 
 - 딥러닝 핵심코드
+
 ```python
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -631,7 +632,9 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 - 여성, 남성 향수는 명품인지 아닌지에 따라 가격이 많이 차이나는 듯 하나, 공용향수는 브랜드의 영향력을 덜 타는 듯 하여 예측모델 생성에 더 적합하다고 판단된다.
 - 비록 공용향수의 데이터는 적으나, 상관관계가 명확하므로 이로 예측모델 생성을 진행한다.
 <br>
+
 - 딥러닝 핵심코드
+
 ```python
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
