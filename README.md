@@ -627,6 +627,7 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 [miniproj_second.ipynb](miniproj_second.ipynb)<br>
 
 ![히트맵2](히트맵2.png)
+
 **2차 학습 과정에서 향수는 아래의 이유로 공용향수만을 대상으로 진행하게 되었습니다.** <br>
 
 - 여성, 남성 향수는 명품인지 아닌지에 따라 가격이 많이 차이나는 듯 하나, 공용향수는 브랜드의 영향력을 덜 타는 듯 하여 예측모델 생성에 더 적합하다고 판단된다.
