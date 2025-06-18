@@ -10,6 +10,7 @@
  <a id="a-2.1" href="#b-2.1">2.1</a>. 수집과정<br> <a id="a-3" href="#b-3">3</a>. 학습<br>
  <a id="a-3.1" href="#b-3.1">3.1</a>. 전처리<br>
  <a id="a-3.2" href="#b-3.2">3.2</a>. 머신러닝, 딥러닝<br>
+ <a id="a-3.3" href="#b-3.3">3.3</a>. 2차 전처리 및 학습<br>
  <a id="a-4" href="#b-4">4</a>. 프로젝트 결과<br>
  <a id="a-4.1" href="#b-4.1">4.1</a>. 결과<br>
 
@@ -115,6 +116,10 @@
 * 쇼핑몰 링크
 
 아래는 데이터 수집에 사용한 코드입니다.
+
+<details>
+<summary><strong>수집코드1</strong></summary>
+
 ```python
 import requests
 from config import Config
@@ -249,7 +254,6 @@ except KeyError:
 np_item_li = np.array(np_item_li)
 print(np_item_li)
 
-
 # 1. NumPy 배열을 DataFrame으로 변환
 df = pd.DataFrame(np_item_li)
 
@@ -258,7 +262,10 @@ df.columns = ['productId', '제목', '가격', '개수', '용량(ml)', '타겟',
 
 # 2. CSV 파일로 저장
 df.to_csv('data1.csv', index=False, encoding='utf-8-sig')
+
 ```
+</details>
+
 해당 코드를 이용하여 아래의 표와 같은 데이터를 1차로 수집할 수 있었습니다.
 | productId   | 제목              | 가격     | 개수 | 용량(ml) | 타겟 | URL                                                          |
 | ----------- | --------------- | ------ | -- | ------ | -- | ------------------------------------------------------------ |
@@ -276,6 +283,10 @@ df.to_csv('data1.csv', index=False, encoding='utf-8-sig')
 selenium 라이브러리를 이용하더라도 네이버 쇼핑몰의 스크립트에는 접근이 힘들었습니다. 그러하여 pyautogui 라이브러리의 이미지 검색과 pyperclip 라이브러리의 클립보드 기능을 같이 이용하여 데이터를 수집하였습니다.
 
 아래는 추가적으로 데이터를 수집한 코드입니다.
+
+<details>
+<summary><strong>수집코드2</strong></summary>
+ 
 ```python
 import pyautogui
 import webbrowser
@@ -510,6 +521,8 @@ finally:
     df.to_csv('data2.csv', index=False, encoding='utf-8-sig')
 ```
 
+</details>
+
 수집 과정에 대한 시연 영상은 아래 링크에서 확인하실 수 있습니다.<br>
 [수집 과정 영상](https://www.youtube.com/watch?v=-g0Ap-8-1Cs)
 
@@ -535,7 +548,33 @@ finally:
 <summary><h3><a id="b-3.1" href="#a-3.1">3.1</a>. 전처리</h3></summary>
 
 데이터 전처리는 아래의 노트북 파일을 참고 부탁드립니다.<br>
-[miniproj_preprocessing.ipynb](miniproj_preprocessing.ipynb)
+[miniproj_preprocessing.ipynb](miniproj_preprocessing.ipynb)<br>
+
+히트맵은 다음과 같습니다.<br>
+![히트맵](히트맵.png)
+
+**분석**
+- 아래는 유의미한 상관관계를 토대로 한 분석 및 가설도출입니다.
+<br>
+
+- 가격에 대한 분석 및 가설
+ + 가격과 고객의 만족도(평점, 향/지속력 만족도)는 비례관계다.
+  1. 가설1<br>
+   고품질의 재료사용으로 인해 가격이 증가하고 고객만족도가 상승하였다.
+  2. 가설2<br>
+   고객의 수요에 따라 공급자가 가격을 증가시켰다.(수요 견인 인플레이션)
+ + 남성/공용 향수가 여성향수에 비해 가격이 비싸다.
+  1. 가설1<br>
+   향수에 대한 수요가 남성보다 여성이 높으므로 가격이 증가하였다.
+  2. 가설2<br>
+   남성이 선호하는 향의 재료가 비교적 고가이다.
+ + 총용량이 증가할수록 가격이 낮아진다.
+  1. 가설1<br>
+   유통 수수료로 인해 고용량의 향수일수록 가격이 낮다.
+- 추가적인 의견
+1. 개수가 많으면 포장비용으로 인해 가격이 더 증가될 것으로 예상했으나 오히려 반비례관계이다. 개수가 늘어날수록 평균적으로 총 용량이 늘어나는데, 가격과 용량이 반비례관계이므로 나타나는 현상으로 예상된다.
+2. 가격이 비쌀수록 구매하는 고객이 줄어드는 경우가 많다보니 리뷰수가 이에 영향을 받는 것으로 예상된다.
+3. 여성향수인지에 대한 여부는 상관관계가 낮은데 이는 향수의 가격이 여성향수를 기준으로 맞춰짐에 인한 것으로 예상된다.
 
 </details>
 
@@ -543,7 +582,93 @@ finally:
 <summary><h3><a id="b-3.2" href="#a-3.2">3.2</a>. 머신러닝, 딥러닝</h3></summary>
 
 아래는 머신러닝 및 딥러닝 코드입니다.<br>
-[miniproj_first.ipynb](miniproj_first.ipynb)
+[miniproj_first.ipynb](miniproj_first.ipynb)<br>
+
+- 딥러닝 핵심코드
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from keras.callbacks import ModelCheckpoint, EarlyStopping
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 모델 구성
+model = Sequential([
+    Dense(32, activation='relu', input_shape=(X.shape[1],)),
+    Dense(16, activation='relu'),
+    Dense(8, activation='relu'),
+    Dense(1)  # 회귀는 출력 뉴런 1개, 활성화 없음
+])
+
+# 컴파일
+model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
+# 학습 중단지점 설정
+early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
+
+# 데이터 분할
+
+# 최적화 모델을 업데이트하고 저장
+checkpointer = ModelCheckpoint(filepath="first_deep.keras", monitor='val_loss', verbose=1, save_best_only=True)
+
+# 학습
+history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_split=0.2, callbacks=[early_stopping_callback,checkpointer])
+```
+
+</details>
+
+<details open>
+<summary><h3><a id="b-3.3" href="#a-3.3">3.3</a>. 2차 전처리 및 학습</h3></summary>
+
+위에서 학습한 모델의 성능 향상을 위해 추가적인 전처리 및 학습을 진행하였습니다.<br>
+[miniproj_preprocessing_2.ipynb](miniproj_preprocessing_2.ipynb)<br>
+[miniproj_second.ipynb](miniproj_second.ipynb)<br>
+
+![히트맵2](히트맵2.png)
+**2차 학습 과정에서 향수는 아래의 이유로 공용향수만을 대상으로 진행하게 되었습니다.** <br>
+
+- 여성, 남성 향수는 명품인지 아닌지에 따라 가격이 많이 차이나는 듯 하나, 공용향수는 브랜드의 영향력을 덜 타는 듯 하여 예측모델 생성에 더 적합하다고 판단된다.
+- 비록 공용향수의 데이터는 적으나, 상관관계가 명확하므로 이로 예측모델 생성을 진행한다.
+<br>
+- 딥러닝 핵심코드
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from keras.callbacks import ModelCheckpoint, EarlyStopping
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 모델 구성
+model = Sequential([
+    Dense(32, activation='relu', input_shape=(X.shape[1],)),
+    Dropout(0.5),
+    Dense(16, activation='relu'),
+    Dropout(0.5),
+    Dense(8, activation='relu'),
+    Dense(1)  # 회귀는 출력 뉴런 1개, 활성화 없음
+])
+
+# 컴파일
+model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
+# 학습 중단지점 설정
+early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
+
+# 데이터 분할
+
+# 최적화 모델을 업데이트하고 저장
+checkpointer = ModelCheckpoint(filepath="second_deep.keras", monitor='val_loss', verbose=1, save_best_only=True)
+
+# 학습
+history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_split=0.2, callbacks=[early_stopping_callback,checkpointer])
+```
+
+**1차 학습과 다른 점**
+- 브랜드의 영향을 많이 받을 것이라 판단되는 남성, 여성향수를 제외한 공용향수만 학습을 진행하였습니다.
+- 가격이 리뷰수의 영향을 과하게 받을 것이라 생각되어 리뷰수를 정규화 하였습니다.
+- 딥러닝 학습 과정에서 Dropout을 이용하여 과적합을 더 방지할 수 있도록 하였습니다.
 
 </details>
 
@@ -554,8 +679,8 @@ finally:
 <summary><h3><a id="b-4.1" href="#a-4.1">4.1</a>. 결과</h3></summary>
 
 ### 결과
-- 예측값의 오차가 너무 크다.
-- 예측할 때 필요한 중요한 데이터가 누락된 것으로 판단됩니다.
+- 2차로 나눠 진행한 결과, 1차 예측모델에 비해 성능이 많이 향상되었으나, 여전히 오차의 범위가 꽤 큽니다.
+- 브랜드의 영향을 덜 받는 경우, 리뷰 평점에 대한 영향이 큰 것을 알 수 있었습니다.
 
 ### 대안
 - 시간이 더 있었다면 각각의 향수의 메인향에 대한 데이터를 추가로 수집하여 레이블인코딩 진행했으면 좋았을 것 같습니다.
