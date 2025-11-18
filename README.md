@@ -527,7 +527,7 @@ finally:
 [수집 과정 영상](https://www.youtube.com/watch?v=-g0Ap-8-1Cs)
 
 위 과정을 통해 데이터를 수집하는 과정에서 일부 데이터가 수집이 덜 된 경우가 존재하여
-[collect_data4_pyautogui-2.py](collect_data4_pyautogui-2.py) 파일을 통해 한번 더 데이터 수집을 진행했습니다.
+<a href="https://github.com/wnstjq0915/AI_Study/blob/main/collect_data4_pyautogui-2.py">collect_data4_pyautogui-2.py</a> 파일을 통해 한번 더 데이터 수집을 진행했습니다.
 
 
 위 과정에서 수집한 데이터를 data3.csv로 저장했습니다.
@@ -548,10 +548,10 @@ finally:
 <summary><h3><a id="b-3.1" href="#a-3.1">3.1</a>. 전처리</h3></summary>
 
 데이터 전처리는 아래의 노트북 파일을 참고 부탁드립니다.<br>
-[miniproj_preprocessing.ipynb](miniproj_preprocessing.ipynb)<br>
+<a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing.ipynb">miniproj_preprocessing.ipynb</a><br>
 
 히트맵은 다음과 같습니다.<br>
-![히트맵](히트맵.png)
+<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵.png">
 
 **분석**
 - 아래는 유의미한 상관관계를 토대로 한 분석 및 가설도출입니다.
@@ -582,7 +582,7 @@ finally:
 <summary><h3><a id="b-3.2" href="#a-3.2">3.2</a>. 머신러닝, 딥러닝</h3></summary>
 
 아래는 머신러닝 및 딥러닝 코드입니다.<br>
-[miniproj_first.ipynb](miniproj_first.ipynb)<br>
+<a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_first.ipynb">miniproj_first.ipynb</a><br>
 
 - 딥러닝 핵심코드
 
@@ -623,10 +623,9 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 <summary><h3><a id="b-3.3" href="#a-3.3">3.3</a>. 2차 전처리 및 학습</h3></summary>
 
 위에서 학습한 모델의 성능 향상을 위해 추가적인 전처리 및 학습을 진행하였습니다.<br>
-[miniproj_preprocessing_2.ipynb](miniproj_preprocessing_2.ipynb)<br>
-[miniproj_second.ipynb](miniproj_second.ipynb)<br>
+<a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing_2.ipynb">miniproj_preprocessing_2.ipynb</a><br>
 
-![히트맵2](히트맵2.png)
+<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵2.png">
 
 **2차 학습 과정에서 향수는 아래의 이유로 공용향수만을 대상으로 진행하게 되었습니다.** <br>
 
