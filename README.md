@@ -2,8 +2,7 @@
 
 * 본 프로젝트는 머신러닝 및 딥러닝을 이용하여 향수에 대한 가격을 예측하는 모델을 만드는 프로젝트입니다.
 
-<details open>
-<summary><b>목차</b></summary>
+<details open><summary><b>목차</b></summary>
 
 <a id="a-1" href="#b-1">1</a>. 기획<br>
  <a id="a-1.1" href="#b-1.1">1.1</a>. 주제선정<br> <a id="a-2" href="#b-2">2</a>. 데이터 수집<br>
@@ -18,11 +17,9 @@
 
 ---
 
-<details open>
-<summary><h2><a id="b-1" href="#a-1">1</a>. 기획</h2></summary>
+<details open><summary><h2><a id="b-1" href="#a-1">1</a>. 기획</h2></summary>
 
-<details open>
-<summary><h3><a id="b-1.1" href="#a-1.1">1.1</a>. 주제선정</h3></summary>
+<details open><summary><h3><a id="b-1.1" href="#a-1.1">1.1</a>. 주제선정</h3></summary>
 
 * 주제 선정 기준
 
@@ -39,11 +36,9 @@
 </details>
 </details>
 
-<details open>
-<summary><h2><a id="b-2" href="#a-2">2</a>. 데이터 수집</h2></summary>
+<details open><summary><h2><a id="b-2" href="#a-2">2</a>. 데이터 수집</h2></summary>
 
-<details open>
-<summary><h3><a id="b-2.1" href="#a-2.1">2.1</a>. 수집과정</h3></summary>
+<details open><summary><h3><a id="b-2.1" href="#a-2.1">2.1</a>. 수집과정</h3></summary>
 
 네이버 API를 이용하여 아래와 같은 응답을 받을 수 있었습니다.
 
@@ -117,8 +112,7 @@
 
 아래는 데이터 수집에 사용한 코드입니다.
 
-<details>
-<summary><strong>수집코드1</strong></summary>
+<details><summary><strong>수집코드1</strong></summary>
 
 ```python
 import requests
@@ -284,8 +278,7 @@ selenium 라이브러리를 이용하더라도 네이버 쇼핑몰의 스크립�
 
 아래는 추가적으로 데이터를 수집한 코드입니다.
 
-<details>
-<summary><strong>수집코드2</strong></summary>
+<details><summary><strong>수집코드2</strong></summary>
  
 ```python
 import pyautogui
@@ -541,11 +534,9 @@ finally:
 </details>
 </details>
 
-<details open>
-<summary><h2><a id="b-3" href="#a-3">3</a>. 학습</h2></summary>
+<details open><summary><h2><a id="b-3" href="#a-3">3</a>. 학습</h2></summary>
 
-<details open>
-<summary><h3><a id="b-3.1" href="#a-3.1">3.1</a>. 전처리</h3></summary>
+<details open><summary><h3><a id="b-3.1" href="#a-3.1">3.1</a>. 전처리</h3></summary>
 
 데이터 전처리는 아래의 노트북 파일을 참고 부탁드립니다.<br>
 <a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing.ipynb">miniproj_preprocessing.ipynb</a><br>
@@ -578,8 +569,7 @@ finally:
 
 </details>
 
-<details open>
-<summary><h3><a id="b-3.2" href="#a-3.2">3.2</a>. 머신러닝, 딥러닝</h3></summary>
+<details open><summary><h3><a id="b-3.2" href="#a-3.2">3.2</a>. 머신러닝, 딥러닝</h3></summary>
 
 아래는 머신러닝 및 딥러닝 코드입니다.<br>
 <a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_first.ipynb">miniproj_first.ipynb</a><br>
@@ -619,8 +609,7 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 
 </details>
 
-<details open>
-<summary><h3><a id="b-3.3" href="#a-3.3">3.3</a>. 2차 전처리 및 학습</h3></summary>
+<details open><summary><h3><a id="b-3.3" href="#a-3.3">3.3</a>. 2차 전처리 및 학습</h3></summary>
 
 위에서 학습한 모델의 성능 향상을 위해 추가적인 전처리 및 학습을 진행하였습니다.<br>
 <a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing_2.ipynb">miniproj_preprocessing_2.ipynb</a><br>
@@ -675,11 +664,9 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 
 </details>
 
-<details open>
-<summary><h2><a id="b-4" href="#a-4">4</a>. 프로젝트 결과</h2></summary>
+<details open><summary><h2><a id="b-4" href="#a-4">4</a>. 프로젝트 결과</h2></summary>
 
-<details open>
-<summary><h3><a id="b-4.1" href="#a-4.1">4.1</a>. 결과</h3></summary>
+<details open><summary><h3><a id="b-4.1" href="#a-4.1">4.1</a>. 결과</h3></summary>
 
 ### 결과
 - 2차로 나눠 진행한 결과, 1차 예측모델에 비해 성능이 많이 향상되었으나, 여전히 오차의 범위가 꽤 큽니다.
