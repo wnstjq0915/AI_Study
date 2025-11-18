@@ -551,7 +551,7 @@ finally:
 <a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing.ipynb">miniproj_preprocessing.ipynb</a><br>
 
 히트맵은 다음과 같습니다.<br>
-<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵.png"/>
+<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵.png?raw=true"/>
 
 **분석**
 - 아래는 유의미한 상관관계를 토대로 한 분석 및 가설도출입니다.
@@ -625,7 +625,7 @@ history = model.fit(X_train, y_train, epochs=3000, batch_size=500, validation_sp
 위에서 학습한 모델의 성능 향상을 위해 추가적인 전처리 및 학습을 진행하였습니다.<br>
 <a href="https://github.com/wnstjq0915/AI_Study/blob/main/miniproj_preprocessing_2.ipynb">miniproj_preprocessing_2.ipynb</a><br>
 
-<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵2.png"/>
+<img src="https://github.com/wnstjq0915/AI_Study/blob/main/히트맵2.png?raw=true"/>
 
 **2차 학습 과정에서 향수는 아래의 이유로 공용향수만을 대상으로 진행하게 되었습니다.** <br>
 
