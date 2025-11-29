@@ -1,4 +1,4 @@
-# Mini-PROJECT
+# PERFUME-PRICE-PREDICTION-PROJECT
 
 * 본 프로젝트는 머신러닝 및 딥러닝을 이용하여 향수에 대한 가격을 예측하는 모델을 만드는 프로젝트입니다.
 
